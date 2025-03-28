@@ -1,0 +1,18 @@
+services:
+  upload-pinata:
+    build: ./upload
+    environment:
+      PINATA_JWT: ${PINATA_JWT:-null}
+      DATA: ${DATA-unigecard}
+      PINATA_URL: ${PINATA_URL:-null}
+    volumes:
+      - ./unigecard:/unigecard
+
+  upload-pinata-test:
+    build: ./upload
+    environment:
+      PINATA_JWT: ${PINATA_JWT:-null}
+      DATA: ${DATA-pokemon}
+      PINATA_URL: ${PINATA_URL:-null}
+    volumes:
+      - ./pokemon:/pokemon
