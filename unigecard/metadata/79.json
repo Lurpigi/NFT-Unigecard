@@ -1,0 +1,16 @@
+{
+  "id": 79,
+  "name": "Simone Acquilini",
+  "image": "",
+  "description": "Nato in Toscana e adottato da Genova, preparatissimo tutor gentile e vero tifoso dell’Inter. Sempre pronto per uscite serali, mostra la sua abilità nel sorseggiare birre rosse con la stessa maestria con cui scrive codice.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

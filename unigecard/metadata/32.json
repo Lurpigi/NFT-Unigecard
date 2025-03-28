@@ -1,0 +1,16 @@
+{
+  "id": 32,
+  "name": "Chiara Cossu",
+  "image": "",
+  "description": "Dalla Sardegna, una delle maggiori menti del corso di informatica, con i suoi occhi scruta il percorso più vicino alla sufficienza. Sempre pronta a sostenerti e a ridere alla tue battute che non fanno ridere neanche un po’.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

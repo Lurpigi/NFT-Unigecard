@@ -1,0 +1,16 @@
+{
+  "id": 21,
+  "name": "Lorenzo Contino",
+  "image": "",
+  "description": "Ormai chiamato all’anagrafe Lollo Uni(x), è in grado di smontare persino i computer militari e riassemblarli più funzionanti di prima. La sua propensione alla tecnologia non lo rende un grande amante dei parchi acquatici, nonostante conosca bene il suo nemico.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

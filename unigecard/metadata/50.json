@@ -1,0 +1,16 @@
+{
+  "id": 50,
+  "name": "Lorenzo La Corte",
+  "image": "",
+  "description": "Componente della Santissima Trinità, il salvatore dei disattenti durante le lezioni. Esperto di Taekwondo e di feste da spiaggia in camicia. Non esiste domanda a cui non sappia rispondere ed esame in cui trovi difficoltà.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "simonuccio"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

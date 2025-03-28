@@ -1,0 +1,16 @@
+{
+  "id": 63,
+  "name": "Giulia Sattanino",
+  "image": "",
+  "description": "Occhi azzurro brillante e capelli biondi corti sono solo due delle sue caratteristiche peculiari, anche lei amante del cibo stellato e della buona cucina, con il suo ragazzo formano una delle coppie più belle del corso di Informatica.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

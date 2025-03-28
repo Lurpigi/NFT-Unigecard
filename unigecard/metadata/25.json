@@ -1,0 +1,16 @@
+{
+  "id": 25,
+  "name": "Michele Frattini",
+  "image": "",
+  "description": "Un gentiluomo d’altri tempi, con le sue maniere cortesi lascia di stucco chiunque ancora non lo conosca. Generoso, soprattutto se si tratta di condividere con dei poveri babbani la sua conoscenza suprema del magico mondo dei Pokèmon.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "alexa"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": 57,
+  "name": "Giorgio Cacciola",
+  "image": "",
+  "description": "Impavido gigante del corso di informatica, voce dei deboli che affronta qualunque professore per far sentire la sua opinione e quella dei suoi colleghi. Chiamato con molti nomi e temuto dalle persone malvagie, si potrebbe definire un Robin Hood 2.0.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

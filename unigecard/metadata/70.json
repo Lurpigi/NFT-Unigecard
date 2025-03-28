@@ -1,0 +1,16 @@
+{
+  "id": 70,
+  "name": "Filippo Ricca",
+  "image": "",
+  "description": "Protagonista di River Monsters, non si sa se faccia più strage pescando creature marine negli oceani o durante i suoi esami. La difficoltà dei suoi esami è comparabile solo al peso delle orate pescate.\nSi narra che si sia assopito all'ombra dell'ultimo sole.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "giovanni"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "P"
+    }
+  ]
+}

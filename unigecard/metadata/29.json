@@ -1,0 +1,16 @@
+{
+  "id": 29,
+  "name": "Francesco Curcio",
+  "image": "",
+  "description": "Se sei fortunato puoi osservare il suo ciuffo ricciolino ondeggiare per i corridoi. Quando lo vedi da lontano potresti pensare che sia caratterizzato da un animo ribelle ma conoscendolo capirai che è un cuore caldo al cioccolato.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

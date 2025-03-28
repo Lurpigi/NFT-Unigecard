@@ -1,0 +1,16 @@
+{
+  "id": 62,
+  "name": "Nicolò Arena",
+  "image": "",
+  "description": "Uno dei nostri streamer preferiti nonché ottimo Chef amante della cucina stellata. Campione di basket su ruote, è in grado di superare qualsiasi ostacolo si ponga tra lui e il suo obiettivo. Con la sua ragazza formano la coppia più solare del corso.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": 74,
+  "name": "Giovanni Chiola",
+  "image": "",
+  "description": "Grazie alle sue capacità psichiche nate da una costante pratica dello yoga, ha aperto il suo terzo occhio per vedere la luce al di là del mondo. Ex samurai e cantante per feste, si dice che riesca a programmare solo in codice binario.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "giovanni"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "P"
+    }
+  ]
+}

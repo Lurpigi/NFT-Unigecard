@@ -1,0 +1,16 @@
+{
+  "id": 7,
+  "name": "Federica Caleffi",
+  "image": "",
+  "description": "I pochi fortunati che sono riusciti a conoscerla hanno trovato una ragazza misteriosa e interessante, sempre pronta per un bel viaggio. Maestra indiscussa di Vogue Style e di giacche di pelle, sembra uscita da un fumetto di JOJO.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

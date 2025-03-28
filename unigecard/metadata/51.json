@@ -1,0 +1,16 @@
+{
+  "id": 51,
+  "name": "Federico Fontana",
+  "image": "",
+  "description": "Ogni povera anima ignorante viene travolta dalla sua immensa generosità venendo così infusa di conoscenza. Compagno perfetto di mangiate al sushi e indispensabile nel tuo gruppo di studio. No, non è parente di Fabio Fontana.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "milo"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

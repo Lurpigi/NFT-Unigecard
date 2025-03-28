@@ -1,0 +1,16 @@
+{
+  "id": 4,
+  "name": "Maxwell Sanyaolu",
+  "image": "",
+  "description": "Non si sa bene se sia effettivamente iscritto all’università o solo un fantasma che passa a portare presenza ogni tanto. Graziato dalle più potenti divinità è arrivato dove si trova adesso. Si dice che abbia ottenuto la cittadinanza onoraria del Kaoba.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

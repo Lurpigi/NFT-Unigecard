@@ -1,0 +1,16 @@
+{
+  "id": 59,
+  "name": "Edoardo Oldirini",
+  "image": "",
+  "description": "Ingegnere illegalmente infiltrato nel corso di Informatica. Famoso per i suoi allenamenti infiniti in palestra. Con il suono della sua chitarra è capace di evocare demoni satanici in grado di sterminare le agricolture biodinamiche.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": 58,
+  "name": "Elisa Calza",
+  "image": "",
+  "description": "Una ragazza semplice ma molto pungente, sempre in grado di aiutarti con ciò di cui hai bisogno, che sia un appunto, un progetto o qualche parola. E' la Little John 2.0 del nostro Robin Hood e non si fa spaventare da niente e nessuno.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

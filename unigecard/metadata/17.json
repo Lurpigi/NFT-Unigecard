@@ -1,0 +1,16 @@
+{
+  "id": 17,
+  "name": "Davide Giovanetti",
+  "image": "",
+  "description": "Lord della sbronza e delle bevute in compagnia, anche nelle serate in cui il suo corpo contiene più alcool che sangue non perde la capacità di camminare. Amante dei giochi di ruolo, all'uso è pronto a mostrare la sublime arte del taekewondo.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

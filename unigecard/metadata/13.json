@@ -1,0 +1,16 @@
+{
+  "id": 13,
+  "name": "Gianluca Napolitano",
+  "image": "",
+  "description": "Pizzetto iconico e voce leggera e soave per questo fantastico youtuber. Napo7700 con i suoi svariati tutorial online è in grado di aiutarti in qualunque cosa tu abbia bisogno, eccetto forse a costruire un triangolo di Tartaglia in C#.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

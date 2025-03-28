@@ -1,0 +1,16 @@
+{
+  "id": 5,
+  "name": "Luigi Timossi",
+  "image": "",
+  "description": "Si prende più cura del suo baffo che dello studio. A lezione passa il tempo a giocare alla Switch o a parlare di cose a caso e tutti si chiedono come diamine faccia a passare gli esami. Che abbia forse stretto un patto col diavolo?",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "alexa"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "D"
+    }
+  ]
+}

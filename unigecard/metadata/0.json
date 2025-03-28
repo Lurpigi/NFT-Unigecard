@@ -1,0 +1,16 @@
+{
+  "id": 0,
+  "name": "DIBRIS",
+  "image": "",
+  "description": "Dove tutti stanno bene chiaccherando\nInsieme a loro colleghi e amici, tra molti alti e\nBassi, nonostante tutto hanno trovato dei\nRicordi indelebili che li accompagneranno o\nInseguiranno per tutta la vita.\nSemplicente una seconda casa: InfUnige.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "P"
+    }
+  ]
+}

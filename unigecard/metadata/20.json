@@ -1,0 +1,16 @@
+{
+  "id": 20,
+  "name": "Erik Ricci",
+  "image": "",
+  "description": "Dal ciuffo sempre ordinato nella sua entropia più totale, arrivato dalle lontane terre del ponente savonese, silenzioso e sagace, non rinuncia mai a una bella serata in compagnia in cui sono presenti giochi da tavolo e si beve.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

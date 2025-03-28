@@ -1,0 +1,16 @@
+{
+  "id": 55,
+  "name": "Milo Galli",
+  "image": "",
+  "description": "Evasore di tasse professionista, disegnatore incallito, super sportivo ed imponente ma tutti sappiamo che il suo vero super potere sono le battute: con una di esse può sterminare qualunque tipo di attacco. \"L'hai capita?! È divertente perchè... è Milo”.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

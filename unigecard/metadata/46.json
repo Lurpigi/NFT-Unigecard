@@ -1,0 +1,16 @@
+{
+  "id": 46,
+  "name": "Luca Ferrari",
+  "image": "",
+  "description": "Tanto simpatico quanto megalomane, non si sa se ami di più il suo riflesso o il suo bicipite. Sempre in prima fila nelle lezioni, è una delle star del corso, sempre pronto a dire la sua e in grado di tenere testa a chiunque osi contraddirlo.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "giovanni"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": 66,
+  "name": "Giacomo Ratto",
+  "image": "",
+  "description": "Luminare dell’informatica e della matematica, poco si sa su questo radioso essere e grazie alla sua conoscenza suprema è in grado di oscurare anche le menti più brillanti. Sedersi dietro di lui agli esami evita un fallimento assicurato.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

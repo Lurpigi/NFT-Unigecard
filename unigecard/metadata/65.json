@@ -1,0 +1,16 @@
+{
+  "id": 65,
+  "name": "Alessandro Oneto",
+  "image": "",
+  "description": "Che tu abbia bisogno di hackerare la NASA o scoprire un nuovo gioco da tavola, lui è la persona che fa al caso tuo. Grazie alle sue freddure ha risolto il riscaldamento globale. Silenzioso e discreto finché non si tratta di insultare qualche designer.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "M"
+    }
+  ]
+}

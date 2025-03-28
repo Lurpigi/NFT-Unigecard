@@ -1,0 +1,16 @@
+{
+  "id": 33,
+  "name": "Dennis Mossa",
+  "image": "",
+  "description": "Calciatore più veloce della Liguria, con le sue battute secche è in grado di far rimanere tutti a bocca asciutta. Nei suoi modesti viaggi all’estero porta sempre un bidet per ogni evenienza e ad ogni lezione è sempre presente con il corpo ma non con la mente.",
+  "attributes": [
+    {
+      "trait_type": "illustratore",
+      "value": "lurpoz"
+    },
+    {
+      "trait_type": "tipo",
+      "value": "A"
+    }
+  ]
+}
