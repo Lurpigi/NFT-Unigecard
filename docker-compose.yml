@@ -6,7 +6,7 @@ services:
       DATA: ${DATA-unigecard}
       PINATA_URL: ${PINATA_URL:-null}
     volumes:
-      - ./unigecard:/unigecard
+      - ./unigecard:/app/unigecard
 
   upload-pinata-test:
     build: ./upload
@@ -15,4 +15,4 @@ services:
       DATA: ${DATA-pokemon}
       PINATA_URL: ${PINATA_URL:-null}
     volumes:
-      - ./pokemon:/pokemon
+      - ./pokemon:/app/pokemon
