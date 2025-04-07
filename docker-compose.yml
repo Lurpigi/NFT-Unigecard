@@ -16,3 +16,10 @@ services:
       PINATA_URL: ${PINATA_URL:-null}
     volumes:
       - ./pokemon:/app/pokemon
+
+  frontend:
+    build:
+      context: ./infUnigeNFT
+    volumes:
+      - ./infUnigeNFT:/app
+    network_mode: host

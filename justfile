@@ -24,5 +24,5 @@ down:
     docker container prune -f
 
 run-frontend:
-    cd infUnigeNFT
-    npm run dev
+    docker compose build --no-cache frontend
+    docker compose up frontend
