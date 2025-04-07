@@ -22,3 +22,7 @@ down:
     docker builder prune -f
     docker image prune -f
     docker container prune -f
+
+run-frontend:
+    cd infUnigeNFT
+    npm run dev
