@@ -33,9 +33,9 @@ contract InfUnigeNFT is ERC1155, Ownable2Step {
 
     // total of 300 packs
     uint16 private constant batchOrderLength = 1500; //uint16(70 * uint16(numCopiesNormalCard) + 10 * uint16(numCopiesSpecialCard));
-    bytes public batchOrder; 
+    bytes private batchOrder; 
 
-    uint16 public pointer = 1;
+    uint16 private pointer = 1;
 
     constructor() payable ERC1155("ipfs://bafybeifcu5xt7nkivxlspeis3tcvrshdsbz4balj66ersmoytp4z55lshy/{id}.json") Ownable(msg.sender) {
         if (msg.sender == address(0)) revert InvalidRecipient();
