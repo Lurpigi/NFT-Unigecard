@@ -46,7 +46,7 @@ contract InfUnigeNFT is ERC1155, Ownable2Step, ERC2981 {
 
     uint16 private pointer = 1;
 
-    constructor() payable ERC1155("ipfs://bafybeifcu5xt7nkivxlspeis3tcvrshdsbz4balj66ersmoytp4z55lshy/{id}.json") Ownable(msg.sender) {
+    constructor() payable ERC1155("ipfs://QmXrx46YwgKzptm1dzN8fcSRMFMQLhBMTSw9GcZbmVqA7n/{id}.json") Ownable(msg.sender) {
         if (msg.sender == address(0)) revert InvalidRecipient();
         // Revert and refund ETH if any was sent, payable constructor cost less
         if (msg.value != 0) {
