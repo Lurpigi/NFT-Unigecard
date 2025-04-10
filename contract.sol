@@ -23,8 +23,6 @@ contract InfUnigeNFT is ERC1155, Ownable2Step, ERC2981 {
     uint256 public MINT_FEE = 0.05 ether;
     uint96 public royaltyBasis = 1000;
 
-
-
     modifier noReentrancy() {
         require(_status == _NOT_ENTERED, "Reentrant call");
         _status = _ENTERED;
