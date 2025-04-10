@@ -3,19 +3,27 @@ pragma solidity 0.8.29;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
-//import "@openzeppelin/contracts/utils/Pausable.sol";
+import "@openzeppelin/contracts/token/common/ERC2981.sol";
+import "@openzeppelin/contracts/utils/Base64.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract InfUnigeNFT is ERC1155, Ownable2Step {
+contract InfUnigeNFT is ERC1155, Ownable2Step, ERC2981 {
 
-    bytes32 private constant _name = "InfUnigeNFT";
-    uint8 private constant amount = 5; //number of cards to mint at once
-    uint8 private constant numCard = 80; //number of cards
-    uint8 private constant numCopiesNormalCard = 20; //max copies for each student card 20. id: [1-69] + 79 = 70
-    uint8 private constant numCopiesSpecialCard = 10; //max copies for each specials card 10. id: 0 + [70-78] = 10
-    uint8 private constant maxCards = 250; //max number of cards to mint, 60 packs of 5 cards
+    bytes32 public constant _name = "InfUnigeNFT";
+    uint8 public constant amount = 5; //number of cards to mint at once
+    uint8 public constant numCard = 80; //number of cards
+    uint8 public constant numCopiesNormalCard = 20; //max copies for each student card 20. id: [1-69] + 79 = 70
+    uint8 public constant numCopiesSpecialCard = 10; //max copies for each specials card 10. id: 0 + [70-78] = 10
+    uint8 public constant maxCards = 250; //max number of cards to mint, 60 packs of 5 cards
     uint8 private constant _NOT_ENTERED = 1;
     uint8 private constant _ENTERED = 2;
     uint8 private _status = _NOT_ENTERED;
+
+
+    uint256 public MINT_FEE = 0.05 ether;
+    uint96 public royaltyBasis = 1000;
+
+
 
     modifier noReentrancy() {
         require(_status == _NOT_ENTERED, "Reentrant call");
@@ -24,7 +32,10 @@ contract InfUnigeNFT is ERC1155, Ownable2Step {
         _status = _NOT_ENTERED;
     }
 
-    event Minted(address indexed to, uint256[] ids, uint256[] amounts);
+    event Minted(address indexed to, uint256[] ids, uint256[] amounts, uint8 packsOpened);
+    event Withdrawn(address indexed to, uint256 value);
+    event FeeChanged(uint256 newFees);
+    event BaseUriChanged(string baseURI_);
 
     error DeploymentWithETH(uint256 amount);
     error MaxCardsReached();
@@ -48,6 +59,7 @@ contract InfUnigeNFT is ERC1155, Ownable2Step {
 
         batchOrder = _setBatchOrder();
         assert(batchOrder.length == batchOrderLength);
+        _setDefaultRoyalty(msg.sender, royaltyBasis); // 1000 = 10% in basis points
     }
 
     function _setBatchOrder() private view returns (bytes memory) {
@@ -95,17 +107,29 @@ contract InfUnigeNFT is ERC1155, Ownable2Step {
     
     function changeURI(string memory baseURI_) public onlyOwner {
         _setURI(baseURI_);
+        emit BaseUriChanged(baseURI_);
+    }
+
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, ERC2981) returns (bool) {
+        return super.supportsInterface(interfaceId);
+    }
+
+    function setMintFee(uint256 fee) external onlyOwner {
+        MINT_FEE = fee;
+        emit FeeChanged(fee);
     }
 
 
-    function mint(address to) private {
+    function mint(address to, uint8 packs) private {
         if (to == address(0)) revert InvalidRecipient();
         uint8 _amount = amount;
+        _amount = _amount * packs;
         uint16 _pointer = pointer == 1? 0 : pointer;
         bytes storage _batchOrder = batchOrder;
         if (_pointer + _amount >= _batchOrder.length) revert NotEnoughCardsLeft();
         uint256 totalNFTs = getTotalNFTsOf(to);
         if (totalNFTs + _amount >= maxCards) revert MaxCardsReached();
+        
 
         // Overestimate max size to amount, since we may push less
         uint8[] memory tempIds = new uint8[](_amount);
@@ -137,16 +161,20 @@ contract InfUnigeNFT is ERC1155, Ownable2Step {
         }
 
         _mintBatch(to, ids, amounts, "");
-        emit Minted(to, ids, amounts);
+        emit Minted(to, ids, amounts, packs);
     }
 
 
-    function mint4Me() external noReentrancy {
-        mint(msg.sender);
+    function mint4Me(uint8 packsToOpen) external payable noReentrancy {
+        assert(packsToOpen > 1 && packsToOpen <= maxCards/amount); //max packs 60
+        require(msg.value >= MINT_FEE * packsToOpen, "Insufficient ETH amount");
+        mint(msg.sender, packsToOpen);
     }
 
-    function mint4To(address to) external noReentrancy {
-        mint(to);
+    function mint4To(address to, uint8 packsToOpen) external payable noReentrancy {
+        assert(packsToOpen > 1 && packsToOpen <= maxCards/amount); //max packs 60
+        require(msg.value >= MINT_FEE * packsToOpen, "Insufficient ETH amount");
+        mint(to, packsToOpen);
     }
     
     function getTotalNFTsOf(address user) public view returns (uint256 count) {
@@ -202,6 +230,42 @@ contract InfUnigeNFT is ERC1155, Ownable2Step {
 
     function name() public view virtual returns (string memory) {
         return string(bytes.concat(_name));
+    }
+
+    function withdraw() external onlyOwner {
+        uint256 value = address(this).balance;
+        (bool success, ) = payable(owner()).call{value: value}("");
+        require(success, "Withdraw failed");
+        emit Withdrawn(msg.sender, value);
+    }
+
+
+    function toAsciiString(address x) internal pure returns (string memory) {
+        bytes memory s = new bytes(40);
+        for (uint i = 0; i < 20; i++) {
+            bytes1 b = bytes1(uint8(uint(uint160(x)) / (2**(8*(19 - i)))));
+            bytes1 hi = bytes1(uint8(b) / 16);
+            bytes1 lo = bytes1(uint8(b) - 16 * uint8(hi));
+            s[2*i] = char(hi);
+            s[2*i+1] = char(lo);            
+        }
+        return string(s);
+    }
+
+    function char(bytes1 b) internal pure returns (bytes1 c) {
+        if (uint8(b) < 10) return bytes1(uint8(b) + 0x30);
+        else return bytes1(uint8(b) + 0x57);
+    }
+
+    function contractURI() public view returns (string memory) {
+        return string(abi.encodePacked(
+            "data:application/json;base64,",
+            Base64.encode(
+                bytes(
+                    string(abi.encodePacked('{"name":"', name(), '","seller_fee_basis_points":', Strings.toString(royaltyBasis), ',"fee_recipient":"', "0x", toAsciiString(address(owner())), '"}' ))
+                )
+            )
+        ));
     }
 
     
