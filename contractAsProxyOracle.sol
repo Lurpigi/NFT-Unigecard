@@ -83,7 +83,7 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
 
     function initialize(
         uint64 subscriptionId
-    ) public initializer onlyOwner {
+    ) public initializer {
         __ERC1155_init("ipfs://QmXrx46YwgKzptm1dzN8fcSRMFMQLhBMTSw9GcZbmVqA7n/{id}.json");
         __Ownable_init(msg.sender);
         __ERC2981_init();
