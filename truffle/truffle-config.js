@@ -10,8 +10,8 @@ module.exports = {
           `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`
         ),
       network_id: 11155111,
-      gas: 4_000_000, // 4M
-      gasPrice: 20_000_000_000, // 20 gwei
+      gas: 8_000_000, // 8M
+      gasPrice: 100_000_000_000, // 100 gwei
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
