@@ -10,5 +10,5 @@ COPY contracts ./contracts
 COPY migrations ./migrations
 COPY truffle-config.js ./
 
-#CMD ["npx", "truffle", "compile"]
-CMD [ "sh", "-c", "npx truffle compile && echo 'ciao'" ]
+#CMD [ "sh", "-c", "npx truffle compile && npx truffle migrate --network sepolia && truffle run verify InfUnigeNFT --network sepolia" ]
+CMD [ "sh", "-c", "npx truffle compile && npx truffle migrate --network sepolia --dry-run --verbose-rpc" ]

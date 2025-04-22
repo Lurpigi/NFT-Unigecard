@@ -21,10 +21,10 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
 
     uint256 private constant _NOT_ENTERED = 1;
     uint256 private constant _ENTERED = 2;
-    uint256 private _status = _NOT_ENTERED;
+    uint256 private _status;
 
-    uint256 public MINT_FEE = 0.05 ether;
-    uint96 public royaltyBasis = 1000;
+    uint256 public MINT_FEE;
+    uint96 public royaltyBasis;
 
     
 
@@ -60,18 +60,18 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
 
     //VRF of sepolia
     VRFCoordinatorV2Interface COORDINATOR;
-    uint64 private _subscriptionId = 1;
-    uint256 private _latestRequestId = 1;
-    address private _vrfCoordinator = 0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B;
-    bytes32 private _keyHash = 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae;
-    uint32 private _callbackGasLimit = 40000;
-    uint16 private _requestConfirmations = 3;
-    uint32 private _numWords =  1;
+    uint64 private _subscriptionId;
+    uint256 private _latestRequestId;
+    address constant private _vrfCoordinator = 0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B;
+    bytes32 constant private _keyHash = 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae;
+    uint32 constant private _callbackGasLimit = 40000;
+    uint16 constant private _requestConfirmations = 3;
+    uint32 constant private _numWords =  1;
 
     // @custom:oz-upgrades-unsafe-allow constructor
     //payable because fee, solidityscan docet
-    constructor() payable{
-        if (msg.sender == address(0)) revert InvalidRecipient();
+    /*constructor() payable{
+        
         // Revert and refund ETH if any was sent, payable constructor cost less
         if (msg.value != 0) {
             (bool success, ) = msg.sender.call{value: msg.value}("");
@@ -79,11 +79,13 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
             revert DeploymentWithETH(msg.value);
         }
         _disableInitializers(); //set the contract state to not initialized
-    }
+    }*/
 
     function initialize(
         uint64 subscriptionId
     ) public initializer {
+        if (msg.sender == address(0)) revert InvalidRecipient();
+
         __ERC1155_init("ipfs://QmXrx46YwgKzptm1dzN8fcSRMFMQLhBMTSw9GcZbmVqA7n/{id}.json");
         __Ownable_init(msg.sender);
         __ERC2981_init();
