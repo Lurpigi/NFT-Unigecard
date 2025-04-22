@@ -149,7 +149,7 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
     }
 
 
-    function mint(address to, uint256 packs) private {
+    function mint(address to, uint256 packs) private noReentrancy {
         if (to == address(0)) revert InvalidRecipient();
         uint256 _amount = amount;
         _amount = _amount * packs;
@@ -197,15 +197,15 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
 
     /// @notice Mint NFTs for the sender, paying the minting fee
     /// @dev Public minting allowed, no access restriction
-    function mint4To(address to, uint256 packsToOpen) public payable noReentrancy {
-        assert(packsToOpen > 1 && packsToOpen <= maxCards/amount); //max packs 60
+    function mint4To(address to, uint256 packsToOpen) public payable {
+        assert(packsToOpen > 0 && packsToOpen <= maxCards/amount); //max packs 60
         if(msg.value < MINT_FEE * packsToOpen) revert InsufficientETH();
         mint(to, packsToOpen);
     }
 
     /// @notice Mint NFTs for the sender, paying the minting fee
     /// @dev Public minting allowed, no access restriction
-    function mint4Me(uint256 packsToOpen) external payable noReentrancy {
+    function mint4Me(uint256 packsToOpen) external payable {
         mint4To(msg.sender, packsToOpen);
     }
     
