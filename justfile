@@ -26,3 +26,7 @@ down:
 run-frontend:
     docker compose build --no-cache frontend
     docker compose up frontend
+
+deploy-contract:
+    docker compose build --no-cache deploy-contract
+    docker compose up deploy-contract

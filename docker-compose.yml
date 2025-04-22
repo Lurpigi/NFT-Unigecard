@@ -23,3 +23,8 @@ services:
     volumes:
       - ./infUnigeNFT:/app
     network_mode: host
+
+  deploy-contract:
+    build:
+      context: ./truffle
+    network_mode: host
