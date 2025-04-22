@@ -31,5 +31,4 @@ services:
     environment:
       PRIVATE_KEY: ${PRIVATE_KEY:-null}
       ALCHEMY_KEY: ${ALCHEMY_KEY:-null}
-      VRF_SUBSCRIPTION_ID: ${VRF_SUBSCRIPTION_ID:-null}
       ETHERSCAN_API_KEY: ${ETHERSCAN_API_KEY:-null}
