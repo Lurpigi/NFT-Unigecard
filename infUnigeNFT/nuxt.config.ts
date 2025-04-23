@@ -25,4 +25,14 @@ export default defineNuxtConfig({
     componentDir: './components/ui'
   },
 
+  runtimeConfig: {
+    // Solo lato server
+    privateKey: '',
+
+    // Lato client (esposte pubblicamente)
+    public: {
+      proxyAddress: process.env.PROXY_ADDRESS
+    }
+  }
+
 });

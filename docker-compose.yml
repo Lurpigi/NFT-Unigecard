@@ -23,6 +23,8 @@ services:
     volumes:
       - ./infUnigeNFT:/app
     network_mode: host
+    environment:
+     PROXY_ADDRESS: ${PROXY_ADDRESS:-null}
 
   deploy-contract:
     build:
