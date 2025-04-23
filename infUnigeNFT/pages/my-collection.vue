@@ -71,6 +71,9 @@ const totalCards = 80;
 const userCards = ref({});
 const showOnlyOwned = ref(false);
 
+const config = useRuntimeConfig();
+const contractAddress = config.public.proxyAddress;
+
 function hasCard(id) {
   return userCards.value[id] && userCards.value[id] > 0;
 }
@@ -82,7 +85,7 @@ const filteredCardIds = computed(() => {
 });
 
 function goToCard(id) {
-  window.location.href = `https://testnets.opensea.io/assets/sepolia/0xa13d9d004ecc11740006deffc9c20ee9cea61353/${id}`;
+  window.location.href = `https://testnets.opensea.io/assets/sepolia/${contractAddress}/${id}`;
 }
 
 onMounted(() => {
