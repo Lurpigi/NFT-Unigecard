@@ -1,10 +1,12 @@
 <template>
- <div class="layout-container">
-    <Header />
-    <main class="main-content">
-        <slot />
-    </main>
-    <Footer />
+ <div class="min-h-screen bg-cover bg-center bg-no-repeat" style="background-image: url('/imgs/bg.png');">
+  <div class="layout-container">
+      <Header />
+      <main class="main-content">
+          <slot />
+      </main>
+      <Footer />
+    </div>
  </div>
 </template>
   
