@@ -145,7 +145,7 @@ const openPacks = async () => {
     //console.log('Pack Price:', packPrice.toString())
     const tx = await mintFor(address, packCount.value, packPrice)
     console.log('Minting successful! :', tx)
-    router.push('/') // TODO da provare
+    //router.push('/') // non funziona
   } catch (e) {
     errorMessage.value = `Error openPacks: ${e.message}`
     console.error(e)

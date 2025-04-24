@@ -64,6 +64,6 @@ const writers = [
 
 const devs = [
  { name: 'Luigi Timossi', img: '/imgs/lurpigi.jpg', ig: '@lurpigi', link: 'https://www.instagram.com/lurpigi/' },
- { name: 'Michele Frattini', img:'/imgs/', ig:'@', link: 'https://www.instagram.com/' },
+ { name: 'Michele Frattini', img:'/imgs/frassers.jpg', ig:'@fratt0o', link: 'https://www.instagram.com/fratt0o/' },
 ]
 </script>
