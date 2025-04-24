@@ -2,7 +2,7 @@
   <div class="min-h-screen flex justify-center items-center px-6 py-16 text-center">
     <Card class="max-w-4xl p-8">
       <CardContent>
-        <h1 class="md:text-5xl font-bold mb-6">
+        <h1 class="text-4xl sm:text-5xl md:text-5xl font-bold tracking-tight mb-6 text-center p-4">
           InfUnigeCardsNFT
         </h1>
         <p class="md:text-xl leading-relaxed">
@@ -28,7 +28,7 @@
         <div class="flex flex-col sm:flex-row gap-6 justify-center mt-8">
           <NuxtLink to="/pack-opening" class="w-full sm:w-auto">
             <Button
-              class="w-full sm:w-64 h-16 text-xl bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-2xl shadow-lg"
+              class="w-full sm:w-64 h-16 text-xl bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-2xl"
             >
               Open Packs
             </Button>
@@ -36,7 +36,7 @@
 
           <NuxtLink to="/my-collection" class="w-full sm:w-auto">
             <Button
-              class="w-full sm:w-64 h-16 text-xl hover:text-white font-bold rounded-2xl shadow-lg"
+              class="w-full sm:w-64 h-16 text-xl hover:text-white font-bold rounded-2xl"
             >
               My Collection
             </Button>

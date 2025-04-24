@@ -17,12 +17,12 @@
   
   // Non cambia l'indirizzo dinamicamente senza refresh della pagina
   const buttonLabel = computed(() => {
-    return wallet.address ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}` : 'Connetti Wallet'
+    return wallet.address ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}` : 'Connect Wallet'
   })
   
   const handleClick = () => {
     if (wallet.address) {
-      wallet.disconnect() // Non disconnette veramente, non si può fare
+      //wallet.disconnect() // Non disconnette veramente, non si può fare
     } else {
       wallet.connect()
     }

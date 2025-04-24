@@ -4,9 +4,6 @@
     :class="{ 'overflow-x-hidden': true }"
   >
     <div class="px-6 py-10 max-w-6xl mx-auto">
-      <div
-        class="mb-8 flex flex-col sm:flex-row justify-between items-center gap-4"
-      >
         <!--<NuxtLink to="/">
           <Button class="text-white hover:bg-white/10">
             ← Back to Home
@@ -14,7 +11,7 @@
         </NuxtLink> -->
 
         <template v-if="isConnected">
-          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 justify-center md:justify-end p-4 sm:justify-center">
             <label class="text-sm text-white">Show only owned</label>
             <Switch
               v-model="showOnlyOwned"
@@ -22,10 +19,9 @@
             />
           </div>
         </template>
-        </div>
+      
 
-      <h1 class="text-3xl font-bold text-center mb-10">My Collection</h1>
-
+      <h1 class="text-4xl font-bold text-center mb-10">My Collection</h1>
         <template v-if="isConnected">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <Card
@@ -64,7 +60,7 @@
           <div class="flex justify-center px-6 py-16 text-center">
             <Card class="max-w-4xl p-8">
               <CardContent>
-                <h1 class="md:text-3xl font-bold mb-6">Wallet not connected</h1>
+                <h1 class="text-4xl sm:text-5xl md:text-4xl font-bold tracking-tight mb-6 text-center p-4">Wallet not connected</h1>
                 <p class="md:text-xl leading-relaxed">To view your collection, connect with MetaMask</p>
               </CardContent>
             </Card>
@@ -79,7 +75,6 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { ethers } from 'ethers'
 import { useNFTContract } from '~/composables/useContract.js'
@@ -150,14 +145,5 @@ const fetchNFTs = async () => {
 
 onMounted(async () => {
   await checkConnection()
-  /*userCards.value = {
-    0: 1,
-    1: 2,
-    3: 1,
-    5: 1,
-    20: 4,
-    42: 1,
-    78: 1,
-  };*/
 });
 </script>
