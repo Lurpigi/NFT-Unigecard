@@ -27,13 +27,19 @@
 
           <div class="flex items-center justify-center gap-4 mb-6">
             <Button variant="outline" @click="decreasePacks" class="bg-yellow-200 text-xl text-black hover:bg-yellow-300 font-bold">-</Button>
-            <Button 
-              @click="openPacks" 
-              :disabled="packCount.value === 0" 
-              class="bg-yellow-400 sm:w-48 h-14 text-xl text-black hover:bg-yellow-500 font-bold px-6 py-3"
-            >
-              Open {{ packCount }} pack{{ packCount > 1 ? 's' : '' }}
-            </Button>
+            <Button
+                @click="openPacks"
+                :disabled="packCount === 0"
+                :class="[
+                  'sm:w-48 h-14 text-xl font-bold px-6 py-3',
+                  packCount === 0
+                    ? 'bg-gray-400 text-white cursor-not-allowed'
+                    : 'bg-yellow-400 text-black hover:bg-yellow-500'
+                ]"
+              >
+                Open {{ packCount }} pack{{ packCount > 1 ? 's' : '' }}
+              </Button>
+
             <Button variant="outline" @click="increasePacks" class="bg-yellow-200 text-xl text-black hover:bg-yellow-300 font-bold">+</Button>
           </div>
 
@@ -155,6 +161,8 @@ const getMax = async () => {
   }
 }
 
+const router = useRouter()
+
 const openPacks = async () => {
   try {
     if (!isConnected.value) {
@@ -167,8 +175,18 @@ const openPacks = async () => {
     const packPrice = ethers.parseEther(totalCost.value)
     //console.log('Pack Price:', packPrice.toString())
     const tx = await mintFor(address, packCount.value, packPrice)
+    console.log('Waiting for confirmation...')
+    const receipt = await tx.wait()
     console.log('Minting successful! :', tx)
-    //router.push('/') // non funziona
+    // redirect passando info su blockHash o txHash
+    router.push({
+      path: '/result',
+      query: {
+        address,
+        txHash: tx.hash,
+        packs: packCount.value
+      }
+    })
   } catch (e) {
     errorMessage.value = `Error openPacks: ${e.message}`
     console.error(e)

@@ -10,12 +10,18 @@ export const useWalletStore = defineStore('wallet', {
   actions: {
     async connect() {
       if (!process.client || typeof window === 'undefined' || !window.ethereum) return
-
+    
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' })
-        this.provider = new ethers.BrowserProvider(window.ethereum)
-        const signer = await this.provider.getSigner()
+        
+        const provider = new ethers.BrowserProvider(window.ethereum)
+        await provider._ready
+    
+        this.provider = provider
+        const signer = await provider.getSigner()
         this.address = await signer.getAddress()
+        
+        window.location.reload()
       } catch (err) {
         console.error('Errore durante la connessione al wallet:', err)
       }
