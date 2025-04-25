@@ -11,8 +11,8 @@
 
           <div class="flex justify-center mb-6">
             <img
-              src="../public/imgs/Carte-Singole-IT.png"
-              alt="Single Cards"
+              :src="packImage"
+              alt="Pack preview"
               class="w-60"
             />
           </div>
@@ -27,8 +27,13 @@
 
           <div class="flex items-center justify-center gap-4 mb-6">
             <Button variant="outline" @click="decreasePacks" class="bg-yellow-200 text-xl text-black hover:bg-yellow-300 font-bold">-</Button>
-            <Button @click="openPacks" class="bg-yellow-400 sm:w-48 h-14 text-xl text-black hover:bg-yellow-500 font-bold px-6 py-3">
-              Open {{ packCount }} pack{{ packCount > 1 ? 's' : '' }}</Button>
+            <Button 
+              @click="openPacks" 
+              :disabled="packCount.value === 0" 
+              class="bg-yellow-400 sm:w-48 h-14 text-xl text-black hover:bg-yellow-500 font-bold px-6 py-3"
+            >
+              Open {{ packCount }} pack{{ packCount > 1 ? 's' : '' }}
+            </Button>
             <Button variant="outline" @click="increasePacks" class="bg-yellow-200 text-xl text-black hover:bg-yellow-300 font-bold">+</Button>
           </div>
 
@@ -89,6 +94,23 @@ const maxPacks = ref(60)
 
 const totalCost = computed(() => (packCount.value * 0.05).toFixed(2))
 
+const packImage = computed(() => {
+  if (packCount.value === 0) {
+    return '/imgs/pacc0.png'      //
+  } else if (packCount.value === 1) {
+    return '/imgs/pacc1.png'
+  } else if (packCount.value === 2) {
+    return '/imgs/pacc2.png'
+  } else if (packCount.value === 3) {
+    return '/imgs/pacc3.png'
+  } else if (packCount.value === 4) {
+    return '/imgs/pacc4.png'
+  } else {
+    return '/imgs/pacc5.png'
+  }
+})
+
+
 const increasePacks = () => {
   if (packCount.value < maxPacks.value)
     packCount.value++
@@ -125,6 +147,7 @@ const getMax = async () => {
     maxPacks.value = (300 - Number(count)) / 5 
     if (maxPacks.value < 0) {
       maxPacks.value = 0
+      packCount.value = 0
     }
   } catch (e) {
     errorMessage.value = `Error fetching count: ${e.message}`
