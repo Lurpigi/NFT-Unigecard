@@ -10,12 +10,29 @@
                 You found:
             </p>
 
-            <ul v-if="mintedNFTs.length">
-            <li v-for="nft in mintedNFTs" :key="nft.id">
-                ID: {{ nft.id }} - Amount: {{ nft.amount }}
-            </li>
-            </ul>
-            <p v-else>Loading or no NFTs found.</p>
+            <div v-if="mintedNFTs.length" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+                <Card
+                    v-for="nft in mintedNFTs"
+                    :key="nft.id"
+                    class="aspect-[3/4] relative overflow-hidden bg-white/5 border border-white/20 rounded-xl shadow-md transition-transform duration-300 hover:scale-105 hover:drop-shadow-lg"
+                >
+                    <CardContent class="w-full h-full flex items-center justify-center p-2 relative">
+                    <img
+                        :src="`/cards/${nft.id}.png`"
+                        :alt="`Card #${nft.id}`"
+                        class="object-contain w-full h-full"
+                    />
+                    <div
+                        class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded"
+                    >
+                        ×{{ nft.amount }}
+                    </div>
+                    </CardContent>
+                </Card>
+                </div>
+
+            <p v-else class="mt-6">Loading or no NFTs found.</p>
+
     
             <div class="flex flex-col sm:flex-row gap-6 justify-center mt-8">
                 <NuxtLink to="/pack-opening" class="w-full sm:w-auto">
