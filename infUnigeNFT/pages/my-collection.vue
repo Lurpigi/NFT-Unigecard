@@ -1,4 +1,5 @@
 <template>
+  <Toaster />
   <div
     class="min-h-screen w-full text-white"
     :class="{ 'overflow-x-hidden': true }"
@@ -85,10 +86,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { ethers } from "ethers";
 import { useNFTContract } from "~/composables/useContract.js";
+import { toast } from 'vue-sonner'
+import { Toaster } from '@/components/ui/sonner'
 
 const { getMyNFTs } = useNFTContract();
-//const nfts = ref([])
-const errorMessage = ref("");
 const isConnected = ref(false);
 
 const totalCards = 80;
@@ -123,9 +124,8 @@ let signer;
 const checkConnection = async () => {
   try {
     if (!window.ethereum) {
-      throw new Error("Wallet not found. Install MetaMask.");
+      showError('Wallet not found. Install MetaMask.', e)
     }
-
     provider = new ethers.BrowserProvider(window.ethereum);
     const accounts = await provider.send("eth_accounts", []);
     if (accounts.length > 0) {
@@ -133,10 +133,10 @@ const checkConnection = async () => {
       isConnected.value = true;
       await fetchNFTs();
     } else {
-      errorMessage.value = "Wallet not connected.";
+      showError('Wallet not connected', e)
     }
   } catch (e) {
-    errorMessage.value = `Error during connection: ${e.message}`;
+    showError('Connection Error', e) 
   }
 };
 
@@ -149,10 +149,16 @@ const fetchNFTs = async () => {
     });
     userCards.value = cards;
   } catch (e) {
-    errorMessage.value = `Error fetching cards: ${e.message}`;
-    console.error(e);
+    showError('Error fetching cards', e) 
   }
 };
+
+const showError = (title, e) => {
+  if (e && e.reason){
+    toast.error(title, { description: e.reason , duration: 5000 });
+    console.error(e);
+  } else toast.error(title, { duration: 5000 });
+}
 
 onMounted(async () => {
   await checkConnection();

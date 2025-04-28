@@ -2,10 +2,10 @@
   <div
     class="min-h-screen flex justify-center items-center px-6 py-16 text-center"
   >
-    <Card class="max-w-4xl p-8">
+    <Card class="w-full max-w-4xl mx-auto p-6 shadow-lg ">
       <CardContent>
         <h1
-          class="text-4xl sm:text-5xl md:text-5xl font-bold tracking-tight mb-6 text-center p-4"
+          class="text-2xl sm:text-5xl md:text-5xl font-bold tracking-tight mb-6 text-center p-4"
         >
           InfUnigeCardsNFT
         </h1>
@@ -35,12 +35,12 @@
           platforms like OpenSea.<br /><br />
           <strong
             @click="goToScan()"
-            class="hover:text-black transition-colors hover:underline hover:cursor-pointer"
-            >View on EherScan</strong
+            class="hover:text-black transition-colors underline hover:cursor-pointer"
+            >Click here to view on Etherscan</strong
           >
           <br /><br />
           ⚠️ <strong>Warning</strong>: you can't open more packs if you reach a
-          total of 250 cards on your wallet.<br /><br />
+          total of 250 cards on your wallet.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-6 justify-center mt-8">

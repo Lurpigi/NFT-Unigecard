@@ -1,4 +1,5 @@
 <template>
+  <Toaster />
     <template v-if="isConnected">
         <div class="min-h-screen flex justify-center items-center px-6 py-16 text-center">
         <Card class="max-w-4xl p-8">
@@ -65,6 +66,8 @@ import { ethers } from 'ethers'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import contractABI from '../public/ABI.json'
+import { toast } from 'vue-sonner'
+import { Toaster } from '@/components/ui/sonner'
 
 const route = useRoute()
 const mintedNFTs = ref([])
@@ -78,7 +81,7 @@ let signer
 const checkConnection = async () => {
   try {
     if (!window.ethereum) {
-      throw new Error('Wallet not found. Install MetaMask.')
+      showError('Wallet not found. Install MetaMask.', e)
     }
 
     provider = new ethers.BrowserProvider(window.ethereum)
@@ -87,11 +90,18 @@ const checkConnection = async () => {
       signer = await provider.getSigner()
       isConnected.value = true
     } else {
-      errorMessage.value = 'Wallet not connected.'
+      showError('Wallet not connected', e)
     }
   } catch (e) {
-    errorMessage.value = `Error during connection: ${e.message}`
+    showError('Connection Error', e) 
   }
+}
+
+const showError = (title, e) => {
+  if (e && e.reason){
+    toast.error(title, { description: e.reason , duration: 5000 });
+    console.error(e);
+  } else toast.error(title, { duration: 5000 });
 }
 
 onMounted(async () => {

@@ -1,4 +1,5 @@
 <template>
+  <Toaster />
   <div class="min-h-screen px-6 py-10 text-white">
     <template v-if="isConnected">
       <div>
@@ -28,15 +29,39 @@
               >
               <Button
                 @click="openPacks"
-                :disabled="packCount === 0"
+                :disabled="packCount === 0 || isLoading"
                 :class="[
-                  'sm:w-48 h-14 text-xl font-bold px-6 py-3',
-                  packCount === 0
+                  'sm:w-48 h-14 text-xl font-bold px-6 py-3 flex items-center justify-center',
+                  packCount === 0 || isLoading
                     ? 'bg-gray-400 text-white cursor-not-allowed'
                     : 'bg-yellow-400 text-black hover:bg-yellow-500',
                 ]"
               >
-                Open {{ packCount }} pack{{ packCount > 1 ? "s" : "" }}
+                <template v-if="isLoading">
+                  <svg
+                    class="animate-spin h-6 w-6 text-black"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                  </svg>
+                </template>
+                <template v-else>
+                  Open {{ packCount }} pack{{ packCount > 1 ? "s" : "" }}
+                </template>
               </Button>
 
               <Button
@@ -100,6 +125,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { ethers } from "ethers";
 import { getTotalMyNFTs } from "~/composables/useContract.js";
+import { toast } from 'vue-sonner'
+import { Toaster } from '@/components/ui/sonner'
 
 const packCount = ref(1);
 const customAddress = ref("");
@@ -107,6 +134,7 @@ const isConnected = ref(false);
 let provider;
 let signer;
 const maxPacks = ref(60);
+const isLoading = ref(false);
 
 const totalCost = computed(() => (packCount.value * 0.05).toFixed(2));
 
@@ -128,7 +156,7 @@ const packImage = computed(() => {
 
 const increasePacks = () => {
   if (packCount.value < maxPacks.value) packCount.value++;
-  else errorMessage.value = `You can only buy ${maxPacks} packs.`;
+  else showError(`You can only buy ${maxPacks} packs`, e)
 };
 const decreasePacks = () => {
   if (packCount.value > 1) packCount.value--;
@@ -137,7 +165,7 @@ const decreasePacks = () => {
 const checkConnection = async () => {
   try {
     if (!window.ethereum) {
-      throw new Error("Wallet not found. Install MetaMask.");
+      showError('Wallet not found. Install MetaMask.', e)
     }
     provider = new ethers.BrowserProvider(window.ethereum);
     const accounts = await provider.send("eth_accounts", []);
@@ -146,10 +174,10 @@ const checkConnection = async () => {
       isConnected.value = true;
       await getMax();
     } else {
-      errorMessage.value = "Wallet not connected.";
+      showError('Wallet not connected', e)
     }
   } catch (e) {
-    errorMessage.value = `Error during connection: ${e.message}`;
+    showError('Connection Error', e) 
   }
 };
 
@@ -163,8 +191,7 @@ const getMax = async () => {
       packCount.value = 0;
     }
   } catch (e) {
-    errorMessage.value = `Error fetching count: ${e.message}`;
-    console.error(e);
+    showError('Error Fetching NFTs', e) 
   }
 };
 
@@ -172,6 +199,7 @@ const router = useRouter();
 
 const openPacks = async () => {
   try {
+    isLoading.value = true;
     if (!isConnected.value) {
       throw new Error("Wallet not connected.");
     }
@@ -198,10 +226,18 @@ const openPacks = async () => {
       },
     });
   } catch (e) {
-    errorMessage.value = `Error openPacks: ${e.message}`;
-    console.error(e);
+    showError('Minting Error', e) 
+  } finally {
+    isLoading.value = false;
   }
 };
+
+const showError = (title, e) => {
+  if (e && e.reason){
+    toast.error(title, { description: e.reason , duration: 5000 });
+    console.error(e);
+  } else toast.error(title, { duration: 5000 });
+}
 
 onMounted(async () => {
   await checkConnection();
