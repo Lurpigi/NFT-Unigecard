@@ -33,10 +33,10 @@
           destination wallet address. If you don't, the pack will be opened for
           your current wallet. You can buy and sell your NFTs using major
           platforms like OpenSea.<br /><br />
-          <span
+          <strong
             @click="goToScan()"
-            class="hover:text-black transition-colors hover:underline"
-            >View on EherScan</span
+            class="hover:text-black transition-colors hover:underline hover:cursor-pointer"
+            >View on EherScan</strong
           >
           <br /><br />
           ⚠️ <strong>Warning</strong>: you can't open more packs if you reach a
