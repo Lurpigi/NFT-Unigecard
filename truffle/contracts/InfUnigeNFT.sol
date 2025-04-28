@@ -15,7 +15,7 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
     uint256 public constant numCard = 80; //number of cards
     uint256 private constant numCopiesNormalCard = 20; //max copies for each student card 20. id: [1-69] + 79 = 70
     uint256 private constant numCopiesSpecialCard = 10; //max copies for each specials card 10. id: 0 + [70-78] = 10
-    uint256 public constant maxCards = 250; //max number of cards to mint, 60 packs of 5 cards
+    uint256 public constant maxCards = 250; //max number of cards to mint, 50 packs of 5 cards
 
     uint256 private constant _NOT_ENTERED = 1;
     uint256 private constant _ENTERED = 2;
