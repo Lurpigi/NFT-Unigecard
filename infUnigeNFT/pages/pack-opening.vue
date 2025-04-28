@@ -69,7 +69,7 @@
               Estimated total: <strong>{{ totalCost }} ETH</strong> + gas fee
             </p>
 
-            <div class="mb-6 p-4">
+            <div class="mb-6">
               <Label for="address">Address (optional)</Label>
               <Input
                 id="address"
@@ -81,10 +81,17 @@
             </div>
 
             <p class="text-center text-sm mb-2">
-              Each pack contains 5 random NFTs and costs
-              <strong>0.05 ETH</strong> + gas fee<br />
-              Specify your friend's address above if you want to buy him some
-              packs!
+              <strong
+                >Each pack contains 5 random NFTs and costs 0.05 ETH + gas
+                fee</strong
+              ><br /><br />
+              You can open a pack for yourself or for a friend by specifying the
+              destination wallet address. If you don't, the pack will be opened
+              for your current wallet.
+
+              <br /><br />
+              ⚠️ <strong>Warning</strong>: you can't open more packs if you
+              reach a total of 250 cards on your wallet.
             </p>
           </CardContent>
         </Card>
@@ -118,8 +125,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { ethers } from "ethers";
 import { getTotalMyNFTs } from "~/composables/useContract.js";
-import { Toaster } from '@/components/ui/sonner'
-import { showError } from '../lib/stuff.js'
+import { Toaster } from "@/components/ui/sonner";
+import { showError } from "../lib/stuff.js";
 
 const packCount = ref(1);
 const customAddress = ref("");
@@ -148,7 +155,7 @@ const packImage = computed(() => {
 
 const increasePacks = () => {
   if (packCount.value < maxPacks.value) packCount.value++;
-  else showError(`You can only buy ${maxPacks} packs`, e)
+  else showError(`You can only buy ${maxPacks} packs`, e);
 };
 const decreasePacks = () => {
   if (packCount.value > 1) packCount.value--;
@@ -157,7 +164,7 @@ const decreasePacks = () => {
 const checkConnection = async () => {
   try {
     if (!window.ethereum) {
-      showError('Wallet not found. Install MetaMask.', e)
+      showError("Wallet not found. Install MetaMask.", e);
     }
     provider = new ethers.BrowserProvider(window.ethereum);
     const accounts = await provider.send("eth_accounts", []);
@@ -166,10 +173,10 @@ const checkConnection = async () => {
       isConnected.value = true;
       await getMax();
     } else {
-      showError('Wallet not connected', e)
+      showError("Wallet not connected", e);
     }
   } catch (e) {
-    showError('Connection Error', e) 
+    showError("Connection Error", e);
   }
 };
 
@@ -183,7 +190,7 @@ const getMax = async () => {
       packCount.value = 0;
     }
   } catch (e) {
-    showError('Error Fetching NFTs', e) 
+    showError("Error Fetching NFTs", e);
   }
 };
 
@@ -217,7 +224,7 @@ const openPacks = async () => {
       },
     });
   } catch (e) {
-    showError('Minting Error', e) 
+    showError("Minting Error", e);
   } finally {
     isLoading.value = false;
   }

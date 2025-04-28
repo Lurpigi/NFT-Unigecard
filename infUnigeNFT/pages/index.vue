@@ -2,7 +2,7 @@
   <div
     class="min-h-screen flex justify-center items-center px-6 py-16 text-center"
   >
-    <Card class="w-full max-w-4xl mx-auto p-6 shadow-lg ">
+    <Card class="w-full max-w-4xl mx-auto p-6 shadow-lg">
       <CardContent>
         <h1
           class="text-2xl sm:text-5xl md:text-5xl font-bold tracking-tight mb-6 text-center p-4"
@@ -24,23 +24,18 @@
           of the Computer Science course at the University of Genoa,
           transforming them into real NFTs.<br /><br />
           The collection consists of 80 cards, divided into students,
-          professors, and special cards. Each student is associated with one of
-          three categories: Defense, Attack, or Mind.<br /><br />
+          professors, and a special card. The professors and the special card
+          are rarier than the student ones. Each student card is associated with
+          one of three categories: Defense, Attack, or Mind.<br /><br />
           On this site, you can view your collection and open new packs to
-          expand it. Each pack contains 5 random NFTs, costing 0.05 ETH + gas
-          fee each.<br /><br />
-          You can open a pack for yourself or for a friend by specifying the
-          destination wallet address. If you don't, the pack will be opened for
-          your current wallet. You can buy and sell your NFTs using major
-          platforms like OpenSea.<br /><br />
+          expand it. You can buy and sell your NFTs using major platforms like
+          OpenSea. You can reach the marketplace by clicking any card from your
+          collection if the card is already minted.<br /><br />
           <strong
             @click="goToScan()"
             class="hover:text-black transition-colors underline hover:cursor-pointer"
             >Click here to view on Etherscan</strong
           >
-          <br /><br />
-          ⚠️ <strong>Warning</strong>: you can't open more packs if you reach a
-          total of 250 cards on your wallet.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-6 justify-center mt-8">
