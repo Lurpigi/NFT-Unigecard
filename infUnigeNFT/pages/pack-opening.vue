@@ -13,13 +13,6 @@
               <img :src="packImage" alt="Pack preview" class="w-60" />
             </div>
 
-            <!--
-          <div class="flex items-center justify-center gap-4 mb-4">
-            <Button variant="outline" @click="decreasePacks">-</Button>
-            <span class="text-xl font-semibold">{{ packCount }}</span>
-            <Button variant="outline" @click="increasePacks">+</Button>
-          </div> -->
-
             <div class="flex items-center justify-center gap-4 mb-6">
               <Button
                 variant="outline"
@@ -125,8 +118,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { ethers } from "ethers";
 import { getTotalMyNFTs } from "~/composables/useContract.js";
-import { toast } from 'vue-sonner'
 import { Toaster } from '@/components/ui/sonner'
+import { showError } from '../lib/stuff.js'
 
 const packCount = ref(1);
 const customAddress = ref("");
@@ -135,7 +128,6 @@ let provider;
 let signer;
 const maxPacks = ref(60);
 const isLoading = ref(false);
-
 const totalCost = computed(() => (packCount.value * 0.05).toFixed(2));
 
 const packImage = computed(() => {
@@ -216,7 +208,6 @@ const openPacks = async () => {
     console.log("Waiting for confirmation...");
     const receipt = await tx.wait();
     console.log("Minting successful! :", tx);
-    // redirect passando info su blockHash o txHash
     router.push({
       path: "/result",
       query: {
@@ -231,13 +222,6 @@ const openPacks = async () => {
     isLoading.value = false;
   }
 };
-
-const showError = (title, e) => {
-  if (e && e.reason){
-    toast.error(title, { description: e.reason , duration: 5000 });
-    console.error(e);
-  } else toast.error(title, { duration: 5000 });
-}
 
 onMounted(async () => {
   await checkConnection();

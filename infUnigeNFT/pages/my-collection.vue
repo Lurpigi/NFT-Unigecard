@@ -5,11 +5,6 @@
     :class="{ 'overflow-x-hidden': true }"
   >
     <div class="px-6 py-10 max-w-6xl mx-auto">
-      <!--<NuxtLink to="/">
-          <Button class="text-white hover:bg-white/10">
-            ← Back to Home
-          </Button>
-        </NuxtLink> -->
 
       <template v-if="isConnected">
         <div
@@ -86,16 +81,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { ethers } from "ethers";
 import { useNFTContract } from "~/composables/useContract.js";
-import { toast } from 'vue-sonner'
 import { Toaster } from '@/components/ui/sonner'
+import { showError } from '../lib/stuff.js'
 
 const { getMyNFTs } = useNFTContract();
 const isConnected = ref(false);
-
 const totalCards = 80;
 const userCards = ref([]);
 const showOnlyOwned = ref(false);
-
 const config = useRuntimeConfig();
 const contractAddress = config.public.proxyAddress;
 
@@ -110,7 +103,6 @@ const filteredCardIds = computed(() => {
 });
 
 function goToCard(id) {
-  //window.location.href = `https://testnets.opensea.io/assets/sepolia/${contractAddress}/${id}`;
   window.open(
     `https://testnets.opensea.io/assets/sepolia/${contractAddress}/${id}`,
     "_blank"
@@ -152,13 +144,6 @@ const fetchNFTs = async () => {
     showError('Error fetching cards', e) 
   }
 };
-
-const showError = (title, e) => {
-  if (e && e.reason){
-    toast.error(title, { description: e.reason , duration: 5000 });
-    console.error(e);
-  } else toast.error(title, { duration: 5000 });
-}
 
 onMounted(async () => {
   await checkConnection();

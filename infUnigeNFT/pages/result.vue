@@ -33,7 +33,6 @@
                 </div>
 
             <p v-else class="mt-6">Loading or no NFTs found.</p>
-
     
             <div class="flex flex-col sm:flex-row gap-6 justify-center mt-8">
                 <NuxtLink to="/pack-opening" class="w-full sm:w-auto">
@@ -52,7 +51,6 @@
                 </Button>
                 </NuxtLink>
             </div>
-            
             </CardContent>
         </Card>
         </div>
@@ -66,15 +64,12 @@ import { ethers } from 'ethers'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import contractABI from '../public/ABI.json'
-import { toast } from 'vue-sonner'
 import { Toaster } from '@/components/ui/sonner'
+import { showError } from '../lib/stuff.js'
 
 const route = useRoute()
 const mintedNFTs = ref([])
-
-
 const isConnected = ref(false)
-
 let provider
 let signer
 
@@ -83,7 +78,6 @@ const checkConnection = async () => {
     if (!window.ethereum) {
       showError('Wallet not found. Install MetaMask.', e)
     }
-
     provider = new ethers.BrowserProvider(window.ethereum)
     const accounts = await provider.send('eth_accounts', [])
     if (accounts.length > 0) {
@@ -97,19 +91,11 @@ const checkConnection = async () => {
   }
 }
 
-const showError = (title, e) => {
-  if (e && e.reason){
-    toast.error(title, { description: e.reason , duration: 5000 });
-    console.error(e);
-  } else toast.error(title, { duration: 5000 });
-}
-
 onMounted(async () => {
   await checkConnection()
   const { txHash } = route.query
   const provider = new ethers.BrowserProvider(window.ethereum)
   const receipt = await provider.getTransactionReceipt(txHash)
-
   const contractInterface = new ethers.Interface(contractABI)
   
   for (const log of receipt.logs) {
