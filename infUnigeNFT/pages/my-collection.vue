@@ -5,7 +5,6 @@
     :class="{ 'overflow-x-hidden': true }"
   >
     <div class="px-6 py-10 max-w-6xl mx-auto">
-
       <template v-if="isConnected">
         <div
           class="flex items-center gap-2 justify-center md:justify-end p-4 sm:justify-center"
@@ -28,7 +27,7 @@
             @click="goToCard(id)"
           >
             <CardContent
-              class="w-full h-full flex items-center justify-center p-2 relative"
+              class="w-full h-full flex items-center justify-center relative"
             >
               <template v-if="hasCard(id)">
                 <img
@@ -37,7 +36,7 @@
                   class="object-contain w-full h-full"
                 />
                 <div
-                  class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded"
+                  class="absolute top-2 right-2 bg-black/70 text-white px-3 py-2 rounded"
                 >
                   ×{{ userCards[id] }}
                 </div>
@@ -81,8 +80,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { ethers } from "ethers";
 import { useNFTContract } from "~/composables/useContract.js";
-import { Toaster } from '@/components/ui/sonner'
-import { showError } from '../lib/stuff.js'
+import { Toaster } from "@/components/ui/sonner";
+import { showError } from "../lib/stuff.js";
 
 const { getMyNFTs } = useNFTContract();
 const isConnected = ref(false);
@@ -116,7 +115,7 @@ let signer;
 const checkConnection = async () => {
   try {
     if (!window.ethereum) {
-      showError('Wallet not found. Install MetaMask.', e)
+      showError("Wallet not found. Install MetaMask.", e);
     }
     provider = new ethers.BrowserProvider(window.ethereum);
     const accounts = await provider.send("eth_accounts", []);
@@ -125,10 +124,10 @@ const checkConnection = async () => {
       isConnected.value = true;
       await fetchNFTs();
     } else {
-      showError('Wallet not connected', e)
+      showError("Wallet not connected", e);
     }
   } catch (e) {
-    showError('Connection Error', e) 
+    showError("Connection Error", e);
   }
 };
 
@@ -141,7 +140,7 @@ const fetchNFTs = async () => {
     });
     userCards.value = cards;
   } catch (e) {
-    showError('Error fetching cards', e) 
+    showError("Error fetching cards", e);
   }
 };
 
