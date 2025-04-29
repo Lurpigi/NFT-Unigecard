@@ -30,3 +30,10 @@ run-frontend:
 deploy-contract:
     docker compose build --no-cache deploy-contract
     docker compose up deploy-contract
+
+build-frontend:
+    #docker compose up --build -d build-frontend
+    #docker cp $(docker compose ps -q build-frontend):/app/.output ./infUnigeNFT/
+    cd infUnigeNFT && npm run generate && cd ..
+    cp -r infUnigeNFT/.output dist
+
