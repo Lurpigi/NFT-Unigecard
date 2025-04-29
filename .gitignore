@@ -1,3 +1,4 @@
 .env
 unigecard/carte/
 /node_modules
+dist/

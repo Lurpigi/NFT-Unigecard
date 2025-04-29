@@ -35,5 +35,6 @@ build-frontend:
     #docker compose up --build -d build-frontend
     #docker cp $(docker compose ps -q build-frontend):/app/.output ./infUnigeNFT/
     cd infUnigeNFT && npm run generate && cd ..
-    cp -r infUnigeNFT/.output dist
+    cp -r infUnigeNFT/.output/public dist
+    npx gh-pages -d dist
 
