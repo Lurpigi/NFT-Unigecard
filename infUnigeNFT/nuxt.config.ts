@@ -1,26 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   app: {
     head: {
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      ]
-    }
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+    baseURL: "/infUnigeNFT/",
   },
+  ssr: false,
 
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  css: ['~/assets/css/tailwind.css'],
+  css: ["~/assets/css/tailwind.css"],
 
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
 
-  modules: ['shadcn-nuxt', '@pinia/nuxt'],
+  modules: ["shadcn-nuxt", "@pinia/nuxt"],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -30,17 +28,16 @@ export default defineNuxtConfig({
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: './components/ui'
+    componentDir: "./components/ui",
   },
 
   runtimeConfig: {
     // Solo lato server
-    privateKey: '',
+    privateKey: "",
 
     // Lato client (esposte pubblicamente)
     public: {
-      proxyAddress: process.env.PROXY_ADDRESS
-    }
-  }
-
+      proxyAddress: process.env.PROXY_ADDRESS,
+    },
+  },
 });
