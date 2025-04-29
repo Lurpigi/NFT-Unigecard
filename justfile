@@ -38,7 +38,7 @@ build-frontend:
     rm -rf dist
     cd infUnigeNFT
     rm -rf .output
-    npm install && npm run generate && cd ..
+    npm install -y && npm run generate && cd ..
     cp -r infUnigeNFT/.output/public dist
     npx gh-pages -d dist
 
