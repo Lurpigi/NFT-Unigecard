@@ -1,7 +1,9 @@
 <template>
   <div
     class="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
-    style="background-image: url('/imgs/bg.png')"
+    :style="{
+      backgroundImage: `url(${useRuntimeConfig().app.baseURL}imgs/bg.png)`,
+    }"
   >
     <div class="layout-container">
       <Header />

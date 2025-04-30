@@ -139,17 +139,17 @@ const totalCost = computed(() => (packCount.value * 0.05).toFixed(2));
 
 const packImage = computed(() => {
   if (packCount.value === 0) {
-    return "/imgs/pacc0.png"; //
+    return `${useRuntimeConfig().app.baseURL}/imgs/pacc0.png`; //
   } else if (packCount.value === 1) {
-    return "/imgs/pacc1.png";
+    return `${useRuntimeConfig().app.baseURL}/imgs/pacc1.png`;
   } else if (packCount.value === 2) {
-    return "/imgs/pacc2.png";
+    return `${useRuntimeConfig().app.baseURL}/imgs/pacc2.png`;
   } else if (packCount.value === 3) {
-    return "/imgs/pacc3.png";
+    return `${useRuntimeConfig().app.baseURL}/imgs/pacc3.png`;
   } else if (packCount.value === 4) {
-    return "/imgs/pacc4.png";
+    return `${useRuntimeConfig().app.baseURL}/imgs/pacc4.png`;
   } else {
-    return "/imgs/pacc5.png";
+    return `${useRuntimeConfig().app.baseURL}/imgs/pacc5.png`;
   }
 });
 

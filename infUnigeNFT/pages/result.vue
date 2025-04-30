@@ -26,7 +26,7 @@
                 class="w-full h-full flex items-center justify-center relative"
               >
                 <img
-                  :src="`/cards/${nft.id}.png`"
+                  :src="`${useRuntimeConfig().app.baseURL}/cards/${nft.id}.png`"
                   :alt="`Card #${nft.id}`"
                   class="object-contain w-full h-full"
                 />
