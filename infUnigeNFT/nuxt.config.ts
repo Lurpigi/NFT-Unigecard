@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     head: {
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
-    baseURL: "/infUnigeNFT/",
+    baseURL: "/NFT-Unigecard/",
   },
   ssr: true,
   nitro: {
