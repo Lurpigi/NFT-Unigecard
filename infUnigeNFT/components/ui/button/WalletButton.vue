@@ -10,20 +10,27 @@ import { useWalletStore } from "@/stores/wallet";
 import { computed, onMounted } from "vue";
 
 const wallet = useWalletStore();
+const buttonLabel = ref("Connect Wallet");
+
+const updateLabel = () => {
+  buttonLabel.value = wallet.address
+    ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
+    : "Connect Wallet";
+};
+
+// Aggiorna automaticamente quando cambia address
+watch(() => wallet.address, updateLabel);
 
 onMounted(() => {
   wallet.checkConnection();
-});
-
-// Non cambia l'indirizzo dinamicamente senza refresh della pagina
-const buttonLabel = computed(() => {
-  return wallet.address
-    ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
-    : "Connect Wallet";
+  updateLabel();
 });
 
 const handleClick = () => {
-  if (wallet.address) return;
+  if (wallet.address) {
+    updateLabel();
+    return;
+  }
 
   if (typeof window.ethereum !== "undefined") {
     wallet.connect();
