@@ -31,7 +31,7 @@
                   class="object-contain w-full h-full"
                 />
                 <div
-                  class="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded"
+                  class="absolute top-2 right-2 bg-black/70 text-white px-1 py-0.8 md:px-3 md:py-2 rounded"
                 >
                   ×{{ nft.amount }}
                 </div>

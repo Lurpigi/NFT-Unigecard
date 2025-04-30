@@ -38,14 +38,14 @@
                   class="object-contain w-full h-full"
                 />
                 <div
-                  class="absolute top-2 right-2 bg-black/70 text-white px-3 py-2 rounded"
+                  class="absolute top-2 right-2 bg-black/70 text-white px-1 py-0.8 md:px-3 md:py-2 rounded"
                 >
                   ×{{ userCards[id] }}
                 </div>
               </template>
               <template v-else>
                 <div
-                  class="flex flex-col items-center justify-center text-white/40 text-sm text-center px-4"
+                  class="flex flex-col items-center justify-center text-white/40 text-xs md:text-xl text-center px-4"
                 >
                   <span>Card #{{ id }}</span>
                   <span>not owned</span>
