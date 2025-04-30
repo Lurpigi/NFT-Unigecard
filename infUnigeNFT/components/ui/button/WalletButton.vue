@@ -31,7 +31,9 @@ const handleClick = () => {
     const dappUrl = "lurpigi.github.io/NFT-Unigecard";
     window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
   } else {
-    alert("Please install MetaMask");
+    alert(
+      "Please install MetaMask, if you are on IOS, open the link in Metamask"
+    );
   }
 };
 </script>
