@@ -8,7 +8,10 @@ export default defineNuxtConfig({
     },
     baseURL: "/infUnigeNFT/",
   },
-  ssr: false,
+  ssr: true,
+  nitro: {
+    preset: "static", // output statico (Nuxt 3)
+  },
 
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
