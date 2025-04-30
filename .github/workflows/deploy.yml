@@ -17,7 +17,7 @@ jobs:
       # Pick your own package manager and build script
       - run: cd ./infUnigeNFT
       - run: npm install
-      - run: npx nuxi build
+      - run: npx nuxt build --preset github_pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
