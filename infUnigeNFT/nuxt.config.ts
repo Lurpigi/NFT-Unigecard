@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         },
       ],
     },
-    baseURL: "/",
+    baseURL: "",
   },
   ssr: true,
   nitro: {
