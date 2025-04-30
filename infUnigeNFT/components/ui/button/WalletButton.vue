@@ -28,12 +28,10 @@ const handleClick = () => {
   if (typeof window.ethereum !== "undefined") {
     wallet.connect();
   } else if (/Mobi|Android/i.test(navigator.userAgent)) {
-    const dappUrl = encodeURIComponent(
-      "https://lurpigi.github.io/NFT-Unigecard/"
-    );
+    const dappUrl = "lurpigi.github.io/NFT-Unigecard";
     window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
   } else {
-    alert("Please install MetaMask extension or use the MetaMask mobile app.");
+    alert("Please install MetaMask");
   }
 };
 </script>
