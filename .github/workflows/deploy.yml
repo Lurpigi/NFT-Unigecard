@@ -2,8 +2,8 @@ name: Build & Deploy Nuxt site
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - "infUnigeNFT/**"
   workflow_dispatch:
 
 jobs:
