@@ -36,7 +36,7 @@ jobs:
         working-directory: infUnigeNFT
         run: npx nuxi generate
         env:
-          PROXY_ADDRESS: 0xA13d9d004ECC11740006dEFFc9C20Ee9cEa61353
+          PROXY_ADDRESS: ${{ secrets.PROXY_ADDRESS }}
 
       - name: Copy generated files to dist
         run: |
