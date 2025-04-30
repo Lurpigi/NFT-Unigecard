@@ -19,7 +19,9 @@
 
       <h1 class="text-4xl font-bold text-center mb-10">My Collection</h1>
       <template v-if="isConnected">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div
+          class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 md:gap-6 gap-3"
+        >
           <Card
             v-for="id in filteredCardIds"
             :key="id"
