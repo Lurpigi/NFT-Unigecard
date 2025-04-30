@@ -27,6 +27,11 @@ jobs:
         working-directory: infUnigeNFT
         run: npm ci
 
+      - name: Patch baseURL for GitHub Pages
+        working-directory: infUnigeNFT
+        run: |
+          sed -i 's|baseURL: .*$|baseURL: "/NFT-Unigecard/",|' nuxt.config.ts
+
       - name: Generate static site
         working-directory: infUnigeNFT
         run: npx nuxi generate
