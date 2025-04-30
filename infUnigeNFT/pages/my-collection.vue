@@ -31,7 +31,7 @@
             >
               <template v-if="hasCard(id)">
                 <img
-                  :src="`/cards/${id}.png`"
+                  :src="`${useRuntimeConfig().app.baseURL}/cards/${id}.png`"
                   :alt="`Card #${id}`"
                   class="object-contain w-full h-full"
                 />
