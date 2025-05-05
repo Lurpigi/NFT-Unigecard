@@ -1,74 +1,105 @@
-import { ethers } from 'ethers'
-import contractABI from '../public/ABI.json'
+import { ethers } from "ethers";
+import contractABI from "../public/ABI.json";
 
 export function useNFTContract() {
   const getMyNFTs = async () => {
-    const config = useRuntimeConfig()
-    const contractAddress = config.public.proxyAddress
+    const config = useRuntimeConfig();
+    const contractAddress = config.public.proxyAddress;
 
-    if (typeof window.ethereum === 'undefined') {
-      throw new Error('Wallet non rilevato')
+    if (typeof window.ethereum === "undefined") {
+      throw new Error("Wallet non rilevato");
     }
 
-    await window.ethereum.request({ method: 'eth_requestAccounts' })
-    const provider = new ethers.BrowserProvider(window.ethereum)
-    const signer = await provider.getSigner()
-    const contract = new ethers.Contract(contractAddress, contractABI, signer)
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    const [ids, amounts] = await contract.getMyNFTs()
-    return { ids, amounts }
-  }
+    const [ids, amounts] = await contract.getMyNFTs();
+    return { ids, amounts };
+  };
 
-  return { getMyNFTs }
+  return { getMyNFTs };
 }
 
 export function getTotalMyNFTs() {
-  const config = useRuntimeConfig()
-  const contractAddress = config.public.proxyAddress
+  const config = useRuntimeConfig();
+  const contractAddress = config.public.proxyAddress;
 
-  if (typeof window.ethereum === 'undefined') {
-    throw new Error('Wallet non rilevato')
+  if (typeof window.ethereum === "undefined") {
+    throw new Error("Wallet non rilevato");
   }
 
   return new Promise(async (resolve, reject) => {
     try {
-      await window.ethereum.request({ method: 'eth_requestAccounts' })
-      const provider = new ethers.BrowserProvider(window.ethereum)
-      const signer = await provider.getSigner()
-      const contract = new ethers.Contract(contractAddress, contractABI, signer)
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
 
-      const count = await contract.getTotalMyNFTs()
-      resolve( count )
+      const count = await contract.getTotalMyNFTs();
+      resolve(count);
     } catch (error) {
-      reject(error)
+      reject(error);
     }
-  })
+  });
+}
+
+export async function getPointer() {
+  const config = useRuntimeConfig();
+  const contractAddress = config.public.proxyAddress;
+
+  if (typeof window.ethereum === "undefined") {
+    throw new Error("Wallet non rilevato");
+  }
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      const count = await contract.getPointer();
+      resolve(count);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
 export async function mintFor(address, npacks) {
-  const config = useRuntimeConfig()
-  const contractAddress = config.public.proxyAddress
+  const config = useRuntimeConfig();
+  const contractAddress = config.public.proxyAddress;
 
-  if (typeof window.ethereum === 'undefined') {
-    throw new Error('Wallet non rilevato')
+  if (typeof window.ethereum === "undefined") {
+    throw new Error("Wallet non rilevato");
   }
 
   try {
-    await window.ethereum.request({ method: 'eth_requestAccounts' })
-    const provider = new ethers.BrowserProvider(window.ethereum)
-    const signer = await provider.getSigner()
-    const contract = new ethers.Contract(contractAddress, contractABI, signer)
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    const mintFee = await contract.MINT_FEE()
-    const totalValue = mintFee * BigInt(npacks)
+    const mintFee = await contract.MINT_FEE();
+    const totalValue = mintFee * BigInt(npacks);
 
     const tx = await contract.mint4To(address, npacks, {
-      value: totalValue
-    })
+      value: totalValue,
+    });
 
-    await tx.wait()
-    return tx
+    await tx.wait();
+    return tx;
   } catch (error) {
-    throw error
+    throw error;
   }
 }

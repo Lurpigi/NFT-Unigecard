@@ -28,9 +28,10 @@
           are rarier than the student ones. Each student card is associated with
           one of three categories: Defense, Attack, or Mind.<br /><br />
           On this site, you can view your collection and open new packs to
-          expand it. You can buy and sell your NFTs using major platforms like
-          OpenSea. You can reach the marketplace by clicking any card from your
-          collection if the card is already minted.<br /><br />
+          expand it, a total of 300 packs can be opened. You can buy and sell
+          your NFTs using major platforms like OpenSea. You can reach the
+          marketplace by clicking any card from your collection if the card is
+          already minted.<br /><br />
           <strong
             @click="goToScan()"
             class="hover:text-black transition-colors underline hover:cursor-pointer"

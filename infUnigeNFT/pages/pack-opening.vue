@@ -91,7 +91,10 @@
 
               <br /><br />
               ⚠️ <strong>Warning</strong>: you can't open more packs if you
-              reach a total of 250 cards on your wallet.
+              reach a total of 250 cards on your wallet or if the maximum limit
+              of packs that can be opened is reached. <br /><br />
+              You can still open {{ packYouCanopen }} packs. There are still
+              {{ totalPacks }} packs available in the Blockchain. <br /><br />
             </p>
           </CardContentHome>
         </CardHome>
@@ -124,7 +127,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CardHome, CardContentHome } from "@/components/ui/card";
 import { ethers } from "ethers";
-import { getTotalMyNFTs } from "~/composables/useContract.js";
+import { getTotalMyNFTs, getPointer } from "~/composables/useContract.js";
 import { Toaster } from "@/components/ui/sonner";
 import { showError } from "../lib/stuff.js";
 
@@ -134,6 +137,8 @@ const isConnected = ref(false);
 let provider;
 let signer;
 const maxPacks = ref(60);
+const totalPacks = ref(0);
+const packYouCanopen = ref(0);
 const isLoading = ref(false);
 const totalCost = computed(() => (packCount.value * 0.05).toFixed(2));
 
@@ -182,9 +187,15 @@ const checkConnection = async () => {
 
 const getMax = async () => {
   try {
-    const count = await getTotalMyNFTs();
-    //console.log('Total NFTs:', count) // 5n ??
-    maxPacks.value = (250 - Number(count)) / 5;
+    const count = await getTotalMyNFTs(); // da 0 a x
+
+    const pointer = await getPointer(); // da 0 a 1500
+    console.log("Pointer:", pointer);
+    console.log("Count:", count);
+
+    totalPacks.value = (1500 - Number(pointer)) / 5; // 1500 - x
+    packYouCanopen.value = (250 - Number(count)) / 5;
+    maxPacks.value = Math.min(totalPacks.value, packYouCanopen.value);
     if (maxPacks.value < 0) {
       maxPacks.value = 0;
       packCount.value = 0;
