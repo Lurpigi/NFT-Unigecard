@@ -31,14 +31,4 @@ deploy-contract:
     docker compose build --no-cache deploy-contract
     docker compose up deploy-contract
 
-build-frontend:
-    #docker compose up --build -d build-frontend
-    #docker cp $(docker compose ps -q build-frontend):/app/.output ./infUnigeNFT/
-    npm install
-    rm -rf dist
-    cd infUnigeNFT
-    rm -rf .output
-    npm install -y && npm run generate && cd ..
-    cp -r infUnigeNFT/.output/public dist
-    npx gh-pages -d dist
 
