@@ -87,6 +87,10 @@ contract InfUnigeNFT is Initializable, ERC1155Upgradeable, Ownable2StepUpgradeab
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
+    function getPointer() public view returns (uint256) {
+        return pointer;
+    }
+
 
     function _setBatchOrder() private view returns (bytes memory) {
         require(pointer == 1, "Batch already set");
