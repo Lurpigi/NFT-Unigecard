@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen px-6 py-16 flex flex-col items-center gap-10">
-    <Card class="w-full max-w-4xl p-6 shadow-lg">
-      <CardContent>
+    <CardHome class="w-full max-w-4xl p-6 shadow-lg">
+      <CardContentHome>
         <h1
           class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 text-center p-4"
         >
@@ -70,13 +70,13 @@
             <li>Corso di Informatica</li>
           </ul>
         </section>
-      </CardContent>
-    </Card>
+      </CardContentHome>
+    </CardHome>
   </div>
 </template>
 
 <script setup>
-import { Card, CardContent } from "@/components/ui/card";
+import { CardHome, CardContentHome } from "@/components/ui/card";
 import CreditCard from "@/components/ui/card/CreditCard.vue";
 
 const illustrators = [

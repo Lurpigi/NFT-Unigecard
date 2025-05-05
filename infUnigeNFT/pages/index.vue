@@ -2,8 +2,8 @@
   <div
     class="min-h-screen flex justify-center items-center px-6 py-16 text-center"
   >
-    <Card class="w-full max-w-4xl mx-auto p-6 shadow-lg">
-      <CardContent>
+    <CardHome class="w-full max-w-4xl mx-auto p-6 shadow-lg">
+      <CardContentHome>
         <h1
           class="text-2xl sm:text-5xl md:text-5xl font-bold tracking-tight mb-6 text-center p-4"
         >
@@ -55,13 +55,13 @@
             </Button>
           </NuxtLink>
         </div>
-      </CardContent>
-    </Card>
+      </CardContentHome>
+    </CardHome>
   </div>
 </template>
 
 <script setup>
-import { Card, CardContent } from "@/components/ui/card";
+import { CardHome, CardContentHome } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const config = useRuntimeConfig();

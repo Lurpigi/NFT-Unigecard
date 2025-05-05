@@ -58,8 +58,8 @@
 
       <template v-else>
         <div class="flex justify-center px-6 py-16 text-center">
-          <Card class="max-w-4xl p-8">
-            <CardContent>
+          <CardHome class="max-w-4xl p-8">
+            <CardContentHome>
               <h1
                 class="text-4xl sm:text-5xl md:text-4xl font-bold tracking-tight mb-6 text-center p-4"
               >
@@ -68,8 +68,8 @@
               <p class="md:text-xl leading-relaxed">
                 To view your collection, connect with MetaMask
               </p>
-            </CardContent>
-          </Card>
+            </CardContentHome>
+          </CardHome>
         </div>
       </template>
     </div>
@@ -78,7 +78,12 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHome,
+  CardContentHome,
+} from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { ethers } from "ethers";
 import { useNFTContract } from "~/composables/useContract.js";

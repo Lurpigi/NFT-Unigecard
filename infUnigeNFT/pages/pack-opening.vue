@@ -3,10 +3,10 @@
   <div class="min-h-screen px-6 py-10 text-white">
     <template v-if="isConnected">
       <div>
-        <Card
+        <CardHome
           class="max-w-2xl mx-auto p-10 rounded-2xl shadow-lg backdrop-blur border border-white/20"
         >
-          <CardContent>
+          <CardContentHome>
             <h1 class="text-3xl font-bold mb-6 text-center">Open Packs</h1>
 
             <div class="flex justify-center mb-6">
@@ -93,15 +93,15 @@
               ⚠️ <strong>Warning</strong>: you can't open more packs if you
               reach a total of 250 cards on your wallet.
             </p>
-          </CardContent>
-        </Card>
+          </CardContentHome>
+        </CardHome>
       </div>
     </template>
 
     <template v-else>
       <div class="flex justify-center px-6 py-16 text-center">
-        <Card class="max-w-4xl p-8">
-          <CardContent>
+        <CardHome class="max-w-4xl p-8">
+          <CardContentHome>
             <h1
               class="text-4xl sm:text-5xl md:text-4xl font-bold tracking-tight mb-6 text-center p-4"
             >
@@ -110,8 +110,8 @@
             <p class="md:text-xl leading-relaxed">
               To view your collection, connect with MetaMask
             </p>
-          </CardContent>
-        </Card>
+          </CardContentHome>
+        </CardHome>
       </div>
     </template>
   </div>
@@ -122,7 +122,7 @@ import { ref, computed } from "vue";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardHome, CardContentHome } from "@/components/ui/card";
 import { ethers } from "ethers";
 import { getTotalMyNFTs } from "~/composables/useContract.js";
 import { Toaster } from "@/components/ui/sonner";
