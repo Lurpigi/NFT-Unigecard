@@ -1,4 +1,13 @@
 <template>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL59XQERNY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BL59XQERNY');
+  </script>
   <div
     class="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
     :style="{
