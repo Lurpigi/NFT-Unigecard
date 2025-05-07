@@ -35,20 +35,3 @@ services:
       PRIVATE_KEY: ${PRIVATE_KEY:-null}
       ALCHEMY_KEY: ${ALCHEMY_KEY:-null}
       ETHERSCAN_API_KEY: ${ETHERSCAN_API_KEY:-null}
-
-  build-frontend:
-    build:
-      dockerfile: ./deploy.Dockerfile
-      context: ./infUnigeNFT
-    network_mode: host
-    volumes:
-      - ./infUnigeNFT/.output:/app/.output
-    environment:
-      PROXY_ADDRESS: ${PROXY_ADDRESS:-null}
-
-  copy-output:
-    image: busybox
-    depends_on:
-      - build-frontend
-    volumes:
-      - ./infUnigeNFT/.output:/output
