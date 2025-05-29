@@ -108,9 +108,9 @@
               v-if="isValidAddress && customAddress"
               class="text-center text-sm mb-2"
             >
-              This address can still open {{ packYouCanopen }} packs. There are
-              still {{ totalPacks }} packs available in the Blockchain.
-              <br /><br />
+              The address you have specified can still open
+              {{ packYouCanopen }} packs. There are still {{ totalPacks }} packs
+              available in the Blockchain. <br /><br />
             </p>
             <p v-else class="text-center text-sm mb-2">
               You can still open {{ packYouCanopen }} packs. There are still
