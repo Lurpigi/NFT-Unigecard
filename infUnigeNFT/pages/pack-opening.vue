@@ -22,7 +22,7 @@
               >
               <Button
                 @click="openPacks"
-                :disabled="packCount === 0 || isLoading"
+                :disabled="packCount === 0 || isLoading || !isValidAddress"
                 :class="[
                   'sm:w-48 h-14 text-xl font-bold px-6 py-3 flex items-center justify-center',
                   packCount === 0 || isLoading
@@ -104,17 +104,13 @@
               reach a total of 250 cards on your wallet or if the maximum limit
               of packs that can be opened is reached. <br />
             </p>
-            <p
-              v-if="isValidAddress && customAddress"
-              class="text-center text-sm mb-2"
-            >
-              The address you have specified can still open
+            <p class="text-center text-sm mb-2">
+              <template v-if="isValidAddress && customAddress"
+                >The address you have specified</template
+              ><template v-else>You</template>
+              can still open
               {{ packYouCanopen }} packs. There are still {{ totalPacks }} packs
               available in the Blockchain. <br /><br />
-            </p>
-            <p v-else class="text-center text-sm mb-2">
-              You can still open {{ packYouCanopen }} packs. There are still
-              {{ totalPacks }} packs available in the Blockchain. <br /><br />
             </p>
           </CardContentHome>
         </CardHome>
@@ -141,6 +137,41 @@
 </template>
 
 <script setup>
+useHead({
+  link: [
+    {
+      rel: "preload",
+      as: "image",
+      href: `${useRuntimeConfig().app.baseURL}/imgs/pacc0.png`,
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: `${useRuntimeConfig().app.baseURL}/imgs/pacc1.png`,
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: `${useRuntimeConfig().app.baseURL}/imgs/pacc2.png`,
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: `${useRuntimeConfig().app.baseURL}/imgs/pacc3.png`,
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: `${useRuntimeConfig().app.baseURL}/imgs/pacc4.png`,
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: `${useRuntimeConfig().app.baseURL}/imgs/pacc5.png`,
+    },
+  ],
+});
+
 import { ref, computed } from "vue";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
