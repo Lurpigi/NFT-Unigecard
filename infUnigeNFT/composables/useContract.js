@@ -49,6 +49,33 @@ export function getTotalMyNFTs() {
   });
 }
 
+export function getTotalNFTsOf(address) {
+  const config = useRuntimeConfig();
+  const contractAddress = config.public.proxyAddress;
+
+  if (typeof window.ethereum === "undefined") {
+    throw new Error("Wallet non rilevato");
+  }
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      const count = await contract.getTotalNFTsOf(address);
+      resolve(count);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 export async function getPointer() {
   const config = useRuntimeConfig();
   const contractAddress = config.public.proxyAddress;

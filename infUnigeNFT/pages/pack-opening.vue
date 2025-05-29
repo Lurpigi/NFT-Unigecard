@@ -76,8 +76,18 @@
                 type="text"
                 placeholder="0x... or leave blank to use your own"
                 v-model="customAddress"
-                class="mt-2"
+                :class="[
+                  'mt-2',
+                  !isValidAddress && customAddress ? 'border-red-500' : '',
+                ]"
+                @keyup="updateP"
               />
+              <p
+                v-if="!isValidAddress && customAddress"
+                class="text-red-500 text-sm mb-4 mt-1"
+              >
+                Invalid Ethereum address
+              </p>
             </div>
 
             <p class="text-center text-sm mb-2">
@@ -92,7 +102,17 @@
               <br /><br />
               ⚠️ <strong>Warning</strong>: you can't open more packs if you
               reach a total of 250 cards on your wallet or if the maximum limit
-              of packs that can be opened is reached. <br /><br />
+              of packs that can be opened is reached. <br />
+            </p>
+            <p
+              v-if="isValidAddress && customAddress"
+              class="text-center text-sm mb-2"
+            >
+              This address can still open {{ packYouCanopen }} packs. There are
+              still {{ totalPacks }} packs available in the Blockchain.
+              <br /><br />
+            </p>
+            <p v-else class="text-center text-sm mb-2">
               You can still open {{ packYouCanopen }} packs. There are still
               {{ totalPacks }} packs available in the Blockchain. <br /><br />
             </p>
@@ -127,7 +147,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CardHome, CardContentHome } from "@/components/ui/card";
 import { ethers } from "ethers";
-import { getTotalMyNFTs, getPointer } from "~/composables/useContract.js";
+import {
+  getTotalMyNFTs,
+  getTotalNFTsOf,
+  getPointer,
+} from "~/composables/useContract.js";
 import { Toaster } from "@/components/ui/sonner";
 import { showError } from "../lib/stuff.js";
 
@@ -141,6 +165,10 @@ const totalPacks = ref(0);
 const packYouCanopen = ref(0);
 const isLoading = ref(false);
 const totalCost = computed(() => (packCount.value * 0.05).toFixed(2));
+
+const isValidAddress = computed(() => {
+  return customAddress.value === "" || ethers.isAddress(customAddress.value);
+});
 
 const packImage = computed(() => {
   if (packCount.value === 0) {
@@ -176,7 +204,7 @@ const checkConnection = async () => {
     if (accounts.length > 0) {
       signer = await provider.getSigner();
       isConnected.value = true;
-      await getMax();
+      await getMax(0);
     } else {
       showError("Wallet not connected", e);
     }
@@ -185,9 +213,20 @@ const checkConnection = async () => {
   }
 };
 
-const getMax = async () => {
+const updateP = () => {
+  if (customAddress.value && ethers.isAddress(customAddress.value)) {
+    getMax(1);
+  } else if (customAddress.value === "") {
+    getMax(0);
+  }
+};
+
+const getMax = async (who) => {
   try {
-    const count = await getTotalMyNFTs(); // da 0 a x
+    const count =
+      who == 0
+        ? await getTotalMyNFTs()
+        : await getTotalNFTsOf(customAddress.value); // da 0 a x
 
     const pointer = await getPointer(); // da 0 a 1500
     console.log("Pointer:", pointer);
@@ -199,6 +238,8 @@ const getMax = async () => {
     if (maxPacks.value < 0) {
       maxPacks.value = 0;
       packCount.value = 0;
+    } else {
+      packCount.value = 1;
     }
   } catch (e) {
     showError("Error Fetching NFTs", e);
@@ -220,6 +261,11 @@ const openPacks = async () => {
       customAddress.value != ""
         ? customAddress.value
         : await signer.getAddress();
+
+    if (!ethers.isAddress(address)) {
+      //showError("Invalid address format.");
+      throw new Error("Invalid address format.");
+    }
     const packPrice = ethers.parseEther(totalCost.value);
     //console.log('Pack Price:', packPrice.toString())
     const tx = await mintFor(address, packCount.value, packPrice);
