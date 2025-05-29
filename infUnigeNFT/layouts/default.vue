@@ -28,6 +28,20 @@ export default {
     Footer,
   },
 };
+
+useHead({
+  script: [
+    { src: 'https://www.googletagmanager.com/gtag/js?id=G-BL59XQERNY', async: true },
+    {
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BL59XQERNY');
+      `,
+    },
+  ],
+})
 </script>
 
 <style scoped>
