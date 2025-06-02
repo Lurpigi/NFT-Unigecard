@@ -86,11 +86,10 @@ import {
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { ethers } from "ethers";
-import { useNFTContract } from "~/composables/useContract.js";
+import { getMyNFTs } from "~/composables/useContract.js";
 import { Toaster } from "@/components/ui/sonner";
 import { showError } from "../lib/stuff.js";
 
-const { getMyNFTs } = useNFTContract();
 const isConnected = ref(false);
 const totalCards = 80;
 const userCards = ref([]);
@@ -140,10 +139,10 @@ const checkConnection = async () => {
 
 const fetchNFTs = async () => {
   try {
-    const { ids, amounts } = await getMyNFTs();
+    const nfts = await getMyNFTs();
     const cards = {};
-    ids.forEach((id, i) => {
-      cards[id.toString()] = parseInt(amounts[i].toString());
+    nfts.forEach(({ id, amount }) => {
+      cards[id] = parseInt(amount);
     });
     userCards.value = cards;
   } catch (e) {

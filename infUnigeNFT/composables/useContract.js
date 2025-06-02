@@ -1,25 +1,35 @@
 import { ethers } from "ethers";
 import contractABI from "../public/ABI.json";
 
-export function useNFTContract() {
-  const getMyNFTs = async () => {
-    const config = useRuntimeConfig();
-    const contractAddress = config.public.proxyAddress;
+export function getMyNFTs() {
+  const config = useRuntimeConfig();
+  const contractAddress = config.public.proxyAddress;
 
-    if (typeof window.ethereum === "undefined") {
-      throw new Error("Wallet non rilevato");
+  if (typeof window.ethereum === "undefined") {
+    throw new Error("Wallet non rilevato");
+  }
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      const [ids, amounts] = await contract.getMyNFTs();
+      const nfts = ids.map((id, index) => ({
+        id: id.toString(),
+        amount: amounts[index].toString(),
+      }));
+      resolve(nfts);
+    } catch (error) {
+      reject(error);
     }
-
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
-    const [ids, amounts] = await contract.getMyNFTs();
-    return { ids, amounts };
-  };
-
-  return { getMyNFTs };
+  });
 }
 
 export function getTotalMyNFTs() {
