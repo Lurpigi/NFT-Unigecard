@@ -264,7 +264,7 @@ const getMax = async (who) => {
     console.log("Count:", count);
 
     totalPacks.value = (1500 - Number(pointer)) / 5; // 1500 - x
-    packYouCanopen.value = (250 - Number(count)) / 5;
+    packYouCanopen.value = Math.floor((250 - Number(count)) / 5);
     maxPacks.value = Math.min(totalPacks.value, packYouCanopen.value);
     if (maxPacks.value < 0) {
       maxPacks.value = 0;
